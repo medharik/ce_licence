@@ -3,8 +3,20 @@ package pac_bilan;
 import java.util.Scanner;
 
 public class Bilan1Ttc {
+	//A- Edition de note pour un etudiant (le nom)
+//ex : Editer , en JAVA , un code source permettant de 
+//saisir n () matieres  et n coeficients avec n  notes valides 
+//(notre entre 0 et 20, le nombre d'erreurs successive autorise est de 3 )	
+// le programme doit 	afficher :
+	/*a- la somme des notes 
+	b- la note moyenne 
+	c- les notes max et min
+	d-le nom de la matieres ayant la note max 
+	e- calculer l'ecart type 
+	RQ: MATh.sqrt est la racine et puissance au 2 Math.pow(x,2) 
+//B- refaire le programme pour 3 etudiants
 
-	public static void main(String[] args) {
+*/	public static void main(String[] args) {
 		
 		Scanner clavier =new Scanner(System.in);
 		System.out.println("Entrer le nombre de produits : ");
@@ -55,10 +67,10 @@ public class Bilan1Ttc {
 		}
 		System.out.println("le ttc est "+ttc+" $");
 		
-		double min=prix[0],max=prix[0];
+		double max=prix[0],min=prix[0];
 		
-		for (int i = 0; i < qte.length; i++) {
-			if (min>prix[i]) {
+		for(int i = 0; i < qte.length; i++) {
+			if (prix[i]<min) {
 				min=prix[i];
 				
 			}
@@ -68,6 +80,7 @@ public class Bilan1Ttc {
 		}
 		System.out.println(" le prix max est "+max+", prix min est "+min);
 		int posMin=0,posMax=0;
+	
 		for (int i = 0; i < qte.length; i++) {
 			if (prix[i]==min) {
 				posMin=i;

@@ -7,13 +7,18 @@ public static void main(String[] args) {
 	afficher(produit);
 	String []tr=rupture(produit,qte);
 	afficher(tr);
-	int qteAlerte=10;
+	int qteAlerte=2;
  //affiche les produits en alerte  de stock
     alertStock(produit,qte,qteAlerte);	
 }
 
 private static void alertStock(String[] produit, int[] qte, int qteAlerte) {
-	
+	System.out.println("liste des produits en alerte du stock (qte<"+qteAlerte+")");
+	for (int i = 0; i < produit.length; i++) {
+		if(qte[i]<=qteAlerte) {
+			System.out.println(produit[i]);
+		}
+	}
 	
 }
 

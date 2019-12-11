@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>cours web , les bases HTML 5 CSS 3 -CESASUP</title>
+  </head>
+  <body>
+    <a name="fou9"></a>
+    <a href="#liste">LISTES </a>
+    <h1>Rappel des base html</h1>
+    <h2>HTML5</h2>
+    <h3>les balises textuelles</h3>
+    <p>
+      <strong>CESASUP</strong>
+      <em> italique</em>
+      <u>
+        souligne
+      </u>
+      <br />
+      <mark
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+        maiores vel officia ab iure enim assumenda a distinctio commodi nam
+        provident temporibus et modi fuga odio sed corrupti, itaque
+        accusamus.</mark
+      >
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt
+      reprehenderit veritatis numquam expedita provident, animi, eveniet vero
+      amet ullam sapiente necessitatibus harum doloribus nam voluptatum dolores
+      nemo quasi minima. Veniam, ipsum cupiditate? Quibusdam placeat, harum nemo
+      pariatur sunt quas recusandae, sed consequatur enim suscipit reiciendis,
+      non tempore! Obcaecati perferendis veritatis incidunt itaque blanditiis
+      amet distinctio explicabo vitae necessitatibus fugiat? Labore dignissimos
+      nesciunt ratione, inventore veritatis aspernatur esse. Nisi dignissimos
+      rem commodi aspernatur similique quasi hic? Unde, ad cumque laudantium
+      ullam, vitae suscipit id quis maiores nesciunt aperiam illo ratione?
+      Dolore obcaecati autem tempore dignissimos mollitia, adipisci amet
+      deserunt maiores dolor. Accusamus, maxime, ad obcaecati eveniet, illum
+      enim quam saepe suscipit consectetur a blanditiis tempora nihil nam optio
+      ea possimus! Earum culpa tenetur illo, voluptatem aliquam in, fuga qui, id
+      reprehenderit quas possimus vel? Excepturi quod voluptatem debitis aliquid
+      impedit quos eveniet, eligendi nihil officiis quas deserunt minima
+      asperiores aspernatur.
+    </p>
+    <hr />
+    <a name="liste"></a>
+    <h3>les listes</h3>
+    <h3>les listes non ordonnees (unordered list : ul) > li(list item)</h3>
+    <!--
+    ul>li{ELEMENT $}*3
+-->
+    <ul>
+      <li>ELEMENT 1</li>
+      <li>ELEMENT 2</li>
+      <li>ELEMENT 3</li>
+    </ul>
+    <h3>les listes ordonnees (ordered list : ol) > li(list item)</h3>
+    <!--
+    ul>li{ELEMENT $}*3
+-->
+
+    <ol>
+      <li>ELEMENT 1</li>
+      <li>ELEMENT 2</li>
+      <li>ELEMENT 3</li>
+    </ol>
+    <h3>les listes de definiion (d list : ul) > dt dd</h3>
+    <dl>
+      <dt>Sport</dt>
+      <dd>Foot</dd>
+      <dd>Rugby</dd>
+      <dt>Politique</dt>
+      <dd>Nationnalle</dd>
+      <dd>Inter-nationnalle</dd>
+    </dl>
+    <h3>Les liens (Anchor : Ancre)</h3>
+    <a href="https://www.eurosport.fr/" target="_blank">
+      Sports
+    </a>
+    <br />
+    <a href="contact.html">Nous-Contacter</a>
+    <br />
+    <a href="media/gestion_projet.pdf" target="_blank">Cours web</a>
+    <br />
+    <a href="media/fiches_WEB_CLIENT.docx" target="_blank">Fiche</a>
+    <hr />
+    <h3>Les images et les figures</h3>
+
+    <img src="http://placehold.it/300x400" alt="test" />
+    <br />
+    <a href="#fou9"
+      ><img src="http://placehold.it/50" alt="http://placehold.it/50"
+    /></a>
+    <h3>Les videos</h3>
+    <video
+      src="media/videoplayback.mp4"
+      autoplay
+      loop
+      poster="http://placehold.it/200"
+      controls
+      muted
+    ></video>
+    <h3>Les figures</h3>
+    <figure>
+      <img src="http://placehold.it/200" alt="" height="300" />
+      <video
+        src="media/videoplayback.mp4"
+        autoplay
+        loop
+        poster="http://placehold.it/200"
+        controls
+        muted
+      ></video>
+      <audio src="test.mp3" controls></audio>
+      <figcaption>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate
+        voluptatem hic vitae temporibus dignissimos nobis quia repellat itaque
+        neque sit veniam cum rem, ratione aperiam voluptatum commodi dolorum
+        tenetur nulla?
+      </figcaption>
+    </figure>
+    <h3>les sommaires et details</h3>
+    <details>
+      <summary>RESUME</summary>
+
+      <img src="http://placehold.it/300" alt="" />
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum ea optio
+        nesciunt nisi animi consectetur fugit temporibus commodi? Esse ut
+        perspiciatis beatae non excepturi molestias obcaecati magnam officiis,
+        aspernatur atque.
+      </p>
+    </details>
+    <p contenteditable="true" spellcheck="true">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores facilis
+      minus ex, sunt inventore temporibus perspiciatis aperiam voluptatum? Eum
+      ab sit debitis molestias blanditiis. Odit ipsa facere quibusdam aliquam
+      delectus.Placeat cum explicabo iure veritatis! Eveniet necessitatibus
+      beatae, nobis odio et aspernatur amet rerum esse eligendi vitae inventore
+      dolor cum doloremque maxime non cumque voluptate modi libero, omnis atque
+      eaque?
+    </p>
+    <h3>les tableaux</h3>
+    <table border="1" width="300" align="center">
+      <caption align="bottom">
+        Nos tarifs
+      </caption>
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>hp</td>
+          <td rowspan="2" align="center" valign="bottom">4000</td>
+        </tr>
+        <tr>
+          <td>dell</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <td colspan="2">prix</td>
+      </tfoot>
+    </table>
+    <footer>
+      Copyright &copy;2019
+    </footer>
+  </body>
+</html>

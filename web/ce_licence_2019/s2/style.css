@@ -1,0 +1,56 @@
+/* CSS : cascading style sheets =< feuilles de style en cascade 
+langage permettant de definir la presentation graphique des pages web
+Avantage principal : separer le code du style du code source du contenu (html) */
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+body {
+  background: rgb(240, 236, 236);
+}
+h1,
+h2 {
+  text-align: center;
+  color: white;
+  background: black;
+  padding: 10px 0;
+}
+p {
+  border: 2px black solid;
+  padding: 16px;
+  margin: 40px;
+  text-align: justify;
+  text-indent: 20px;
+}
+img {
+  max-width: 100%;
+}
+
+p > img {
+  width: 200px;
+  float: left;
+  margin-right: 20px;
+}
+h1 + img {
+  width: 100%;
+}
+ul {
+  list-style: none;
+  background: black;
+  text-align: center;
+}
+ul li {
+  display: inline-block;
+}
+ul li a {
+  padding: 10px;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background: grey;
+  transition: 1s;
+}

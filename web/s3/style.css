@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 header {
   width: 100%;
   height: 50px;
@@ -10,14 +14,31 @@ main {
 /*  id  CSS: element de style unique */
 #banner {
   background: grey;
+  height: 500px;
 }
 #produits {
-  background: rgb(82, 79, 79);
+  background: rgb(250, 177, 177);
+  min-height: 600px;
+}
+.gauche {
+  background: orange;
+}
+.droite {
+  background: blue;
+}
+.demi {
+  /* width: calc(50% - 2px);
+  height: 400px;
+  display: inline-block; */
+  width: 50%;
+  height: 400px;
+  float: left;
+}
+.n {
+  clear: both;
 }
 section {
   width: 100%;
-  height: 400px;
-  background: yellow;
 }
 footer {
   width: 100%;

@@ -39,5 +39,17 @@ public static void main(String[] args) {
 	mac.afficher();
 	Produit  sony2=new Produit(sony);
 sony2.afficher();
+ProduitAlimentaire lait=new ProduitAlimentaire();
+lait.setPrix(10);
+try {
+	lait.setQtestock(100);
+} catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+lait.setLibelle("Lait uht go");
+lait.afficher();
+ProduitEletro pe=new ProduitEletro("oppo o90", 900, 10, "SMART PHONE ... ") ;
+pe.afficher();
 }
 }

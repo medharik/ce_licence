@@ -36,12 +36,11 @@ public Produit(String libelle, double prix) {
 }
 
 //ecriture le prix
-public void setPrix(double prix) {
+public void setPrix(double prix) throws Exception   {
 	if(prix>=0)
 this.prix = prix;
 	else 
-		System.out.println("prix incorrect");
-}
+throw new Exception("prix invalide");}
 //lecture du prix
 public double getPrix() {
 	return prix;

@@ -24,7 +24,12 @@ public static void main(String[] args) {
 	//
 	Produit sony =new Produit();
 	sony.afficher();
-	sony.setPrix(1000);
+	try {
+		sony.setPrix(1000);
+	} catch (Exception e2) {
+		// TODO Auto-generated catch block
+		e2.printStackTrace();
+	}
 	try {
 		sony.setQtestock(10);
 		sony.afficher();
@@ -40,7 +45,12 @@ public static void main(String[] args) {
 	Produit  sony2=new Produit(sony);
 sony2.afficher();
 ProduitAlimentaire lait=new ProduitAlimentaire();
-lait.setPrix(10);
+try {
+	lait.setPrix(-10);
+} catch (Exception e1) {
+	// TODO Auto-generated catch block
+	e1.printStackTrace();
+}
 try {
 	lait.setQtestock(100);
 } catch (Exception e) {
@@ -51,5 +61,10 @@ lait.setLibelle("Lait uht go");
 lait.afficher();
 ProduitEletro pe=new ProduitEletro("oppo o90", 900, 10, "SMART PHONE ... ") ;
 pe.afficher();
+Produit p=new Produit();
+ProduitAlimentaire jus=null;
+p=jus;
+jus=p;
+
 }
 }

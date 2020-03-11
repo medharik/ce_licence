@@ -13,9 +13,5 @@ public TechnicienDev(int numero, double montantFixe, double nombreIntervention) 
 	this.nombreIntervention = nombreIntervention;
 }
 
-void  calculerSalaire(){
-	System.out.println("TS DEV ");
- this.salaire=montantFixe+nombreIntervention*25;
-	
-}
+
 }

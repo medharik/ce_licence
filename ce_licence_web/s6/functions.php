@@ -1,4 +1,5 @@
 <?php 
+include("config.php");
 // les 3 extensions php / SGBD :
 // mysql_ : 
 // mysqli_ : facile / mono SGBD
@@ -21,14 +22,14 @@ die ("erreur de connexion a la base de donnees ".$e->getMessage());
  
 }
 
-function ajouter($nom,$classe){
+function ajouter($nom,$classe,$chemin){
  try{
             //connexion avec la base 
            $link= connecter_db();
             // preparer une requete bd  dans cette connexion: SQL
-            $rp=$link->prepare("insert into etudiant(nom,classe) values(?,?)");
+            $rp=$link->prepare("insert into etudiant(nom,classe,chemin) values(?,?,?)");
             // executer la requete  preparee
-            $rp->execute([$nom,$classe]);
+            $rp->execute([$nom,$classe,$chemin]);
 }catch(PDOException $e ){
     die ("erreur d'ajout de l'etudiant dans  la base de donnees ".$e->getMessage());
 }
@@ -75,9 +76,9 @@ function all(){
 function find($id){
     try{
         $link= connecter_db();
-         $rp=$link->prepare("select * from etudiant  where id=? order by id  desc");
+         $rp=$link->prepare("select * from etudiant  where id=? ");
          $rp->execute([$id]);
-     $resultat=  $rp->fetch(PDO::FETCH_ASSOC);  
+     $resultat=  $rp->fetch();  
 
      return $resultat;
  }catch(PDOException $e ){
@@ -85,9 +86,31 @@ function find($id){
  }
 
 }
+// upload = televersement de fichier 
+//$infos=$_FILES['chemin']
+function uploader($infos){
+$tmp=$infos['tmp_name'];
+$nom=$infos['name'];
+$path_parts = pathinfo($nom);
+//var_dump($path_parts);
+$ext=strtolower($path_parts ["extension"]);
+$new_name=md5(date('YmdHis').'_'.rand(0,9999)).'.'.$ext;
+$autorise=['jpg','png','jpeg','gif','mp4'];
+$chemin="images/$new_name";
+if(!in_array($ext,$autorise)){
+die("Ce n'est pas une image");
+}
+$taille=filesize($tmp);// retourne la taille du fichier en octect
+if($taille > MAX_UPLOAD_SIZE){
+die("Veulliez choisir un fichier de taille < 8Mo");
+}
+if(!move_uploaded_file($tmp,$chemin)){
+die("Probleme d'upload de l'image");
+};
 
+return $chemin;
 
-
+}
 
 
 ?>

@@ -1,20 +1,10 @@
 <?php 
 include("config.php");
-// les 3 extensions php / SGBD :
-// mysql_ : 
-// mysqli_ : facile / mono SGBD
-// PDO : PHP DATA OBJECT : multi-sgbd
-// fonction pour se connecter a une base de donnees 
-// host : localhost, dbname=db1 , login (root) / mot de passe ()
 function connecter_db(){
-    //3 modes d'exception PDO 
-    //silent_mode => production 
-    // warning_mode => test 
-    //EXECPTION_MODE
     try{
             $options=[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC];
-            $link=  new PDO ("mysql:host=localhost;dbname=db1","root","",$options);
+            $link=  new PDO ("mysql:host=localhost;dbname=db_salle_sport","root","",$options);
             return $link;
     }catch(PDOException $e ){
 die ("erreur de connexion a la base de donnees ".$e->getMessage());
@@ -22,61 +12,89 @@ die ("erreur de connexion a la base de donnees ".$e->getMessage());
  
 }
 
-function ajouter($nom,$classe,$chemin){
+//abonnes
+function ajouter_abonnes($nomprenom,$date_inscription,$email,$photo){
  try{
-            //connexion avec la base 
+           
            $link= connecter_db();
-            // preparer une requete bd  dans cette connexion: SQL
-            $rp=$link->prepare("insert into etudiant(nom,classe,chemin) values(?,?,?)");
-            // executer la requete  preparee
-            $rp->execute([$nom,$classe,$chemin]);
+            $rp=$link->prepare("insert into abonnes(nom_prenom,date_inscription,email,photo) values(?,?,?,?)");
+            $rp->execute([$nomprenom,$date_inscription,$email,$photo]);
 }catch(PDOException $e ){
-    die ("erreur d'ajout de l'etudiant dans  la base de donnees ".$e->getMessage());
+    die ("erreur d'ajout de l'abonnes  dans  la base de donnees ".$e->getMessage());
 }
 }
+//
+//modifier  une ressource (par id)
+function modifier_abonnes($nomprenom,$date_inscription,$email,$photo,$id){
+    try{
+       $link= connecter_db();
+        $rp=$link->prepare("update abonnes set nomprenom=? , date_inscription=? , email=? , photo=?  where id=?");
+        $rp->execute([$nomprenom,$date_inscription,$email,$photo,$id]);
+}catch(PDOException $e ){
+die ("erreur de modification   de l'abonne dans  la base de donnees ".$e->getMessage());
+}
+}
+// fin abonne
+
+//abonnement
+function ajouter_abonnement($date_de,$date_a,$montant,$mode,$abonne_id){
+ try{
+           
+           $link= connecter_db();
+            $rp=$link->prepare("insert into abonnements(date_de,date_a,montant,mode,abonne_id) values(?,?,?,?,?)");
+            $rp->execute([$date_de,$date_a,$montant,$mode,$abonne_id]);
+}catch(PDOException $e ){
+    die ("erreur d'ajout de l'abonnement  dans  la base de donnees ".$e->getMessage());
+}
+}
+//
+//modifier  une ressource (par id)
+function modifier_abonnement($date_de,$date_a,$montant,$mode,$abonne_id,$id){
+    try{
+       $link= connecter_db();
+        $rp=$link->prepare("update abonnes set date_de=? , date_a=? , montant=? , mode=? , abonne_id=? where id=?");
+        $rp->execute([$date_de,$date_a,$montant,$mode,$abonne_id,$id]);
+}catch(PDOException $e ){
+die ("erreur de modification   de l'abonnement dans  la base de donnees ".$e->getMessage());
+}
+}
+// fin abonnement
+
+
 
 
 //supprimer une ressource (par id)
-function supprimer($id){
+// supprimer("abonnes",1)
+function supprimer($table,$id){
     try{
        $link= connecter_db();
-        $rp=$link->prepare("delete from etudiant where id=?");
+        $rp=$link->prepare("delete from  $table  where id=?");
         $rp->execute([$id]);
 }catch(PDOException $e ){
 die ("erreur de suppression  de l'etudiant dans  la base de donnees ".$e->getMessage());
 }
 }
 
-//modifier  une ressource (par id)
-function modifier($nom,$classe,$id){
-    try{
-       $link= connecter_db();
-        $rp=$link->prepare("update etudiant set nom=? , classe=?  where id=?");
-        $rp->execute([$nom,$classe,$id]);
-}catch(PDOException $e ){
-die ("erreur de modification   de l'etudiant dans  la base de donnees ".$e->getMessage());
-}
-}
 
 // recuperer des ressources depuis la bd
-function all(){
+function all($table ){
     try{
         $link= connecter_db();
-         $rp=$link->prepare("select * from etudiant order by id  desc");
+         $rp=$link->prepare("select * from $table order by id  desc");
          $rp->execute();
      $resultat=  $rp->fetchAll();  
 
      return $resultat;
  }catch(PDOException $e ){
- die ("erreur de  recuperation des etudiants dans  la base de donnees ".$e->getMessage());
+ die ("erreur de  recuperation dans  $table dans  la base de donnees ".$e->getMessage());
  }
 
 }
 // recuperer une  ressource par son id depuis la bd
-function find($id){
+function find($table,$id){
     try{
         $link= connecter_db();
-         $rp=$link->prepare("select * from etudiant  where id=? ");
+         $rp=$link->prepare("select * from $table  where id=? ");
          $rp->execute([$id]);
      $resultat=  $rp->fetch();  
 
@@ -142,8 +160,6 @@ $_SESSION['pseudo']=$resultat['pseudo'];
 }
 
 
-// fin check login
 
 
-
-?>
+   

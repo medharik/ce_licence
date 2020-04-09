@@ -1,5 +1,5 @@
 <?php 
-include("config.php");
+
 function connecter_db(){
     try{
             $options=[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
@@ -28,8 +28,13 @@ function ajouter_abonnes($nomprenom,$date_inscription,$email,$photo){
 function modifier_abonnes($nomprenom,$date_inscription,$email,$photo,$id){
     try{
        $link= connecter_db();
-        $rp=$link->prepare("update abonnes set nomprenom=? , date_inscription=? , email=? , photo=?  where id=?");
+     if(!empty($photo)){
+        $rp=$link->prepare("update abonnes set nom_prenom=? , date_inscription=? , email=? , photo=?  where id=?");
         $rp->execute([$nomprenom,$date_inscription,$email,$photo,$id]);
+     }else{
+        $rp=$link->prepare("update abonnes set nom_prenom=? , date_inscription=? , email=?  where id=?");
+        $rp->execute([$nomprenom,$date_inscription,$email,$id]);
+     }
 }catch(PDOException $e ){
 die ("erreur de modification   de l'abonne dans  la base de donnees ".$e->getMessage());
 }

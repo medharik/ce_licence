@@ -1,4 +1,5 @@
 <?php 
+include("config.php");
 include("model.php");
 
 extract($_POST);//$nom=$_POST['nom'], ...// dans les forms 
@@ -9,6 +10,23 @@ if($a=="store"){
     $chemin=uploader($_FILES['photo']);
     ajouter_abonnes($nom_prenom,$date_inscription,$email,$chemin);
 }
+if($a=="delete"){
+    $abonne=find($t,$id);
+    unlink($abonne['photo']);
+    supprimer($t,$id);
+}
+if($a=="update"){
+    $chemin="";
+  
+    if(isset($_FILES['photo']['name']) && !empty($_FILES['photo']['name'])){
+        $abonne=find($t,$id);
+        unlink($abonne['photo']);
+        $chemin=uploader($_FILES['photo']);
+
+     }
+    modifier_abonnes($nom_prenom,$date_inscription,$email,$chemin,$id);
+}
+
 
 
 

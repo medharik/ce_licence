@@ -57,7 +57,7 @@ function ajouter_abonnement($date_de,$date_a,$montant,$mode,$abonne_id){
 function modifier_abonnement($date_de,$date_a,$montant,$mode,$abonne_id,$id){
     try{
        $link= connecter_db();
-        $rp=$link->prepare("update abonnes set date_de=? , date_a=? , montant=? , mode=? , abonne_id=? where id=?");
+        $rp=$link->prepare("update abonnements  set date_de=? , date_a=? , montant=? , mode=? , abonne_id=? where id=?");
         $rp->execute([$date_de,$date_a,$montant,$mode,$abonne_id,$id]);
 }catch(PDOException $e ){
 die ("erreur de modification   de l'abonnement dans  la base de donnees ".$e->getMessage());
@@ -164,7 +164,69 @@ $_SESSION['pseudo']=$resultat['pseudo'];
 
 }
 
+function date_fr($date){
 
+    $date=new DateTime($date);
+return     $date->format('d/m/Y');
+
+}
+
+function d_mois($date_de,$date_a){
+$dt1=new DateTime($date_de);
+$dt2=new DateTime($date_a);
+$i=$dt1->diff($dt2);
+return $i->format('%r%m');
+}
+
+//recherche 
+function rechercher_mot_cle($motcle){
+
+    try{
+        $link= connecter_db();
+
+         $rp=$link->prepare("select * from abonnes where nom_prenom like ? or date_inscription  like ? or email like ?  order by id  desc");
+         $rp->execute(["%$motcle%","%$motcle%","%$motcle%"]);
+     $resultat=  $rp->fetchAll();  
+
+     return $resultat;
+ }catch(PDOException $e ){
+ die ("erreur de  recuperation dans  $table dans  la base de donnees ".$e->getMessage());
+ }
+
+}
+function rechercher($nomprenom,$date_de,$date_a){
+
+    try{
+        $link= connecter_db();
+
+        if(!empty($nomprenom) && !empty($date_de) && !empty($date_a)){
+
+            $rp=$link->prepare("select * from abonnements am join abonnes ab on am.abonne_id = ab.id
+            
+            where ab.nom_prenom like ? and date_de  >= ? and date_a <= ?  order by am.id  desc");
+            $rp->execute(["%$nomprenom%","$date_de","$date_a"]);
+            
+        }else if(!empty($nomprenom) ){
+            $rp=$link->prepare("select * from abonnements am join abonnes ab on am.abonne_id = ab.id
+            
+            where ab.nom_prenom like ?  order by am.id  desc");
+            $rp->execute(["%$nomprenom%"]);
+
+        }else{
+            $rp=$link->prepare("select * from abonnements order by id  desc");
+            $rp->execute();
+        }
+     $resultat=  $rp->fetchAll();  
+
+     return $resultat;
+ }catch(PDOException $e ){
+ die ("erreur de  recherche  ".$e->getMessage());
+ }
+
+}
+
+
+// fin recherche 
 
 
    

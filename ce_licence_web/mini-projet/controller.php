@@ -1,7 +1,6 @@
 <?php 
 include("config.php");
 include("model.php");
-
 extract($_POST);//$nom=$_POST['nom'], ...// dans les forms 
 extract($_GET);//$t, $a , $id  (dans les liens )
 
@@ -32,6 +31,28 @@ if($a=="update"){
 
 
 header("location:abonnes/index.php");
+}
+if($t=="abonnements"){
+if($a=="store"){
+  
+    ajouter_abonnement($date_de,$date_a,$montant,$mode,$abonne_id);
+}
+if($a=="delete"){
+    $abonne=find($t,$id);
+  
+    supprimer($t,$id);
+}
+if($a=="update"){
+  
+    modifier_abonnement($date_de,$date_a,$montant,$mode,$abonne_id,$id);
+
+}
+
+
+
+
+
+header("location:abonnements/index.php");
 }
 
 
